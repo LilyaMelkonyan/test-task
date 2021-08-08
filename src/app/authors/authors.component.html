@@ -1,0 +1,49 @@
+<div class="row">
+    <div class="col-12 d-flex justify-content-between align-items-center">
+        <h2>Authors: {{authors?.length}}</h2>
+        <manage-items 
+            [type]="'author'" 
+            [action]="'add'"
+            [genres]="genres"
+            (manageItemEvent)="addAuthor($event)"></manage-items>
+    </div>
+    <div class="col-12 mt-5">
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th scope="col">First name</th>
+                        <th scope="col">Last name</th>
+                        <th scope="col">Homelend</th>
+                        <th scope="col">Genre</th>
+                        <th scope="col" [style.textAlign]="'right'">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of authors; index as i">
+                        <th>{{item.first_name}}</th>
+                        <th>{{item.last_name}}</th>
+                        <th>{{item.homeland}}</th>
+                        <th>{{genresById[item.genre].title}}</th>
+                        <th class="nowrap" [style.textAlign]="'right'">
+                            <manage-items 
+                                [style.marginRight.px]="10"
+                                [type]="'author'" 
+                                [action]="'edit'" 
+                                [data]="item" 
+                                [genres]="genres"
+                                (manageItemEvent)="editAuthor($event)"
+                                ></manage-items>
+                            <manage-items 
+                                [type]="'author'" 
+                                [action]="'delete'" 
+                                [data]="item" 
+                                (manageItemEvent)="deleteAuthor($event)"
+                                ></manage-items>
+                        </th>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,98 @@
+
+<button class="btn" 
+    [ngClass]="{'btn-lg btn-primary': action === 'add', 
+                'btn-success': action === 'edit', 
+                'btn-danger': action === 'delete'}"
+    (click)="open(addmodal)">
+    <i class="fa" [ngClass]="{'fa-plus': action === 'add',
+                            'fa-edit': action === 'edit',
+                            'fa-trash': action === 'delete'}"></i>
+</button>
+    
+<ng-template #addmodal let-modal>
+    <div class="modal-header" [ngClass]="{'border-bottom-0': action === 'delete'}">
+        <h4 class="modal-title" id="modal-basic-title" *ngIf="action !== 'delete'">{{action}} {{type}}</h4>
+    </div>
+    <div class="modal-body">
+        <form [formGroup]="form" (ngSubmit)="manageForm(modal)" novalidate>
+            <div *ngIf="action !== 'delete'">
+                <div *ngIf="type === 'genre'">
+                    <div class="form-group mb-3">
+                        <label for="genre-title" class="mb-2">*Title: </label>
+                        <input class="form-control" id="genre-title" type="text" formControlName="title" required>
+            
+                        <div *ngIf="form.controls['title'].invalid && (form.controls['title'].dirty || form.controls['title'].touched)" class="text-danger mt-2">
+                            <b *ngIf="form.controls['title'].errors?.required">
+                                Title is required.
+                            </b>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="genre-desc" class="mb-2">Description: </label>
+                        <textarea class="form-control" id="genre-desc"  cols="30" rows="5" formControlName="desc"></textarea>
+                    </div>
+                </div>
+    
+                <div *ngIf="type === 'author'">
+                    <div class="form-group mb-3">
+                        <label for="author-fname" class="mb-2">*First Name: </label>
+                        <input class="form-control" id="author-fname" type="text" formControlName="first_name" required>
+                        <div *ngIf="form.controls['first_name'].invalid && (form.controls['first_name'].dirty || form.controls['first_name'].touched)" class="text-danger mt-2">
+                            <b *ngIf="form.controls['first_name'].errors?.required">
+                                First Name is required.
+                            </b>
+                        </div>
+                    </div>
+                    <div class="form-group mb-3">
+                        <label for="author-lname" class="mb-2">*Last Name: </label>
+                        <input class="form-control" id="author-name" type="text" formControlName="last_name" required>
+                        <div *ngIf="form.controls['last_name'].invalid && (form.controls['last_name'].dirty || form.controls['last_name'].touched)" class="text-danger mt-2">
+                            <b *ngIf="form.controls['last_name'].errors?.required">
+                                Last Name is required.
+                            </b>
+                        </div>
+                    </div>
+                    <div class="form-group mb-3">
+                        <label for="homeland" class="mb-2">Homeland: </label>
+                        <input class="form-control" id="homeland" type="text" formControlName="homeland">
+                    </div>
+                    <div class="form-group">
+                        <label for="genre" class="mb-2">Genre: </label>
+                        <select class="form-control"  id="genre" formControlName="genre">
+                            <option *ngFor="let item of genres" [value]="item.id">{{item.title}}</option>
+                        </select>
+                    </div>
+                </div>
+    
+                <div *ngIf="type === 'book'">
+                    <div class="form-group mb-3">
+                        <label for="book-name" class="mb-2">*Title: </label>
+                        <input class="form-control" id="book-name" type="text" formControlName="title" required>
+            
+                        <div *ngIf="form.controls['title'].invalid && (form.controls['title'].dirty || form.controls['title'].touched)" class="text-danger mt-2">
+                            <b *ngIf="form.controls['title'].errors?.required">
+                                Title is required.
+                            </b>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="book-desc" class="mb-2">Description: </label>
+                        <textarea class="form-control" id="book-desc"  cols="30" rows="5" formControlName="desc"></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <div *ngIf="action === 'delete'">
+                <h5>Are you sure to delete this {{type}}?</h5>
+            </div>
+
+            <div class="d-flex justify-content-end align-items-center py-3">
+                <button type="submit" class="btn btn-primary" [style.marginRight.px]="10" [disabled]="loading || form.invalid">
+                    <div *ngIf="loading" class="spinner-border spinner-border-sm"></div>
+                    {{action}}
+                </button>
+                <button type="button" class="btn btn-outline-secondary" (click)="modal.dismiss()">Cancle</button>
+            </div>
+        </form>
+    </div>
+</ng-template>

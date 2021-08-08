@@ -1,0 +1,43 @@
+<div class="row">
+    <div class="col-12 d-flex justify-content-between align-items-center">
+        <h2>Books: {{books?.length}}</h2>
+        <manage-items 
+            [type]="'book'" 
+            [action]="'add'"
+            (manageItemEvent)="addBook($event)"></manage-items>
+    </div>
+    <div class="col-12 mt-5">
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th scope="col">Title</th>
+                        <th scope="col">Description</th>
+                        <th scope="col" [style.textAlign]="'right'">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of books; index as i">
+                        <th>{{item.title}}</th>
+                        <th>{{item.desc}}</th>
+                        <th class="nowrap" [style.textAlign]="'right'">
+                            <manage-items 
+                                [style.marginRight.px]="10"
+                                [type]="'book'" 
+                                [action]="'edit'" 
+                                [data]="item" 
+                                (manageItemEvent)="editBook($event)"
+                                ></manage-items>
+                            <manage-items 
+                                [type]="'book'" 
+                                [action]="'delete'" 
+                                [data]="item" 
+                                (manageItemEvent)="deleteBook($event)"
+                                ></manage-items>
+                        </th>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

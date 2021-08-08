@@ -1,0 +1,69 @@
+{
+  "genres": [
+    {
+      "title": "Classics",
+      "desc": "Classics descriptionsss",
+      "id": "1"
+    },
+    {
+      "title": "Fantasy",
+      "desc": "ss",
+      "id": "2"
+    },
+    {
+      "title": "Horrorddd",
+      "desc": "",
+      "id": "3"
+    },
+    {
+      "id": "4",
+      "title": "Historical Fiction",
+      "desc": ""
+    },
+    {
+      "id": "5",
+      "title": "Detective",
+      "desc": ""
+    },
+    {
+      "title": "aaa",
+      "desc": "ddd",
+      "id": "233cb73a-646c-3d60-7a75-d8f87e0bdd3e"
+    },
+    {
+      "title": "ddd",
+      "desc": "ddd",
+      "id": "dcffae47-d4ad-de15-925e-68dd40b57e6f"
+    }
+  ],
+  "authors": [
+    {
+      "first_name": "Mark",
+      "last_name": "Twain",
+      "homeland": "sss",
+      "genre": "2",
+      "id": "1"
+    },
+    {
+      "first_name": "sdsd",
+      "last_name": "sdmskld",
+      "homeland": "sdsd",
+      "genre": "5",
+      "id": "c362ebc6-e417-ce76-aafb-d80665cf0123"
+    },
+    {
+      "first_name": "erjdf",
+      "last_name": "cc,mdm",
+      "homeland": null,
+      "genre": "5",
+      "id": "fa63fda9-ccf3-55d1-6df6-d2ed6e6fd71d"
+    }
+  ],
+  "books": [
+    {
+      "id": "1",
+      "title": "The Lord of the Rings",
+      "desc": "Most people have seen the epic movie, but have you read the book?"
+    }
+  ]
+}
